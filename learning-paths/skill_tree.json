@@ -1,0 +1,480 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "generated_by": "curriculum_architect_agent_1",
+    "session_id": "session_20251119_051648",
+    "last_updated": "2025-11-19"
+  },
+  "levels": {
+    "L0": {
+      "name": "Foundation",
+      "duration_weeks": "1-2",
+      "difficulty_score": 1.0,
+      "topics": [
+        {
+          "id": "L0_01",
+          "name": "GPU Architecture Basics",
+          "duration_hours": 3,
+          "prerequisites": [],
+          "learning_objectives": [
+            "Understand CPU vs GPU differences",
+            "Explain SIMT execution model",
+            "Identify when to use GPU acceleration"
+          ],
+          "resources": ["tutorials/beginner/gpu-architecture.md"]
+        },
+        {
+          "id": "L0_02",
+          "name": "CUDA Programming Model",
+          "duration_hours": 4,
+          "prerequisites": ["L0_01"],
+          "learning_objectives": [
+            "Understand kernel, grid, block, thread hierarchy",
+            "Write first CUDA program",
+            "Compile and run CUDA code"
+          ],
+          "resources": ["tutorials/beginner/cuda-programming-model.md"]
+        },
+        {
+          "id": "L0_03",
+          "name": "Development Environment Setup",
+          "duration_hours": 3,
+          "prerequisites": [],
+          "learning_objectives": [
+            "Install CUDA Toolkit",
+            "Configure development environment",
+            "Run sample programs"
+          ],
+          "resources": ["tutorials/beginner/environment-setup.md"]
+        },
+        {
+          "id": "L0_04",
+          "name": "C++ Essentials for CUDA",
+          "duration_hours": 6,
+          "prerequisites": [],
+          "learning_objectives": [
+            "Master pointers and memory management",
+            "Use templates",
+            "Understand CUDA C++ extensions"
+          ],
+          "resources": ["tutorials/beginner/cpp-for-cuda.md"]
+        },
+        {
+          "id": "L0_05",
+          "name": "PyTorch Fundamentals",
+          "duration_hours": 5,
+          "prerequisites": [],
+          "learning_objectives": [
+            "Create and manipulate tensors",
+            "Use GPU acceleration in PyTorch",
+            "Understand autograd basics"
+          ],
+          "resources": ["tutorials/beginner/pytorch-fundamentals.md"]
+        }
+      ]
+    },
+    "L1": {
+      "name": "Basic Kernels",
+      "duration_weeks": "2-3",
+      "difficulty_score": 2.5,
+      "topics": [
+        {
+          "id": "L1_01",
+          "name": "Thread Hierarchy",
+          "duration_hours": 4,
+          "prerequisites": ["L0_02"],
+          "learning_objectives": [
+            "Calculate global thread IDs for any configuration",
+            "Choose appropriate grid and block sizes",
+            "Handle boundary conditions"
+          ],
+          "resources": ["tutorials/beginner/thread-hierarchy.md"],
+          "code_examples": ["kernels/examples/thread-indexing/"]
+        },
+        {
+          "id": "L1_02",
+          "name": "Memory Model Basics",
+          "duration_hours": 5,
+          "prerequisites": ["L0_02"],
+          "learning_objectives": [
+            "Allocate and transfer GPU memory",
+            "Understand memory bandwidth",
+            "Measure transfer performance"
+          ],
+          "resources": ["tutorials/beginner/memory-basics.md"],
+          "code_examples": ["kernels/examples/memory-transfer/"]
+        },
+        {
+          "id": "L1_03",
+          "name": "Element-wise Operations",
+          "duration_hours": 4,
+          "prerequisites": ["L1_01", "L1_02"],
+          "learning_objectives": [
+            "Implement activation functions",
+            "Create PyTorch custom operations",
+            "Benchmark kernel performance"
+          ],
+          "resources": ["tutorials/beginner/element-wise-ops.md"],
+          "code_examples": ["kernels/relu/", "kernels/gelu/", "kernels/swish/"],
+          "projects": ["projects/beginner/activation-library/"]
+        },
+        {
+          "id": "L1_04",
+          "name": "Simple Reductions",
+          "duration_hours": 6,
+          "prerequisites": ["L1_01", "L1_02"],
+          "learning_objectives": [
+            "Implement reduction algorithms",
+            "Use atomic operations safely",
+            "Understand warp divergence"
+          ],
+          "resources": ["tutorials/beginner/reductions.md"],
+          "code_examples": ["kernels/dot-product/", "kernels/reduce/"]
+        },
+        {
+          "id": "L1_05",
+          "name": "Debugging and Profiling",
+          "duration_hours": 4,
+          "prerequisites": ["L1_03"],
+          "learning_objectives": [
+            "Debug CUDA errors effectively",
+            "Use cuda-memcheck",
+            "Profile with NSight Systems"
+          ],
+          "resources": ["tutorials/beginner/debugging-profiling.md"]
+        }
+      ]
+    },
+    "L2": {
+      "name": "Memory Optimization",
+      "duration_weeks": "3-4",
+      "difficulty_score": 4.0,
+      "topics": [
+        {
+          "id": "L2_01",
+          "name": "Memory Coalescing",
+          "duration_hours": 5,
+          "prerequisites": ["L1_02"],
+          "learning_objectives": [
+            "Identify uncoalesced access patterns",
+            "Optimize memory access",
+            "Measure memory efficiency"
+          ],
+          "resources": ["tutorials/intermediate/memory-coalescing.md"],
+          "code_examples": ["kernels/mat-transpose/"]
+        },
+        {
+          "id": "L2_02",
+          "name": "Shared Memory",
+          "duration_hours": 8,
+          "prerequisites": ["L2_01"],
+          "learning_objectives": [
+            "Use shared memory effectively",
+            "Implement tiling strategies",
+            "Synchronize threads correctly"
+          ],
+          "resources": ["tutorials/intermediate/shared-memory.md"],
+          "code_examples": ["kernels/sgemm/", "kernels/hgemm/"]
+        },
+        {
+          "id": "L2_03",
+          "name": "Bank Conflicts",
+          "duration_hours": 5,
+          "prerequisites": ["L2_02"],
+          "learning_objectives": [
+            "Detect bank conflicts",
+            "Apply padding strategies",
+            "Verify conflict-free access"
+          ],
+          "resources": ["tutorials/intermediate/bank-conflicts.md"]
+        },
+        {
+          "id": "L2_04",
+          "name": "Advanced Reductions",
+          "duration_hours": 7,
+          "prerequisites": ["L1_04", "L2_02"],
+          "learning_objectives": [
+            "Implement warp shuffle reductions",
+            "Handle multi-block reductions",
+            "Approach theoretical performance limits"
+          ],
+          "resources": ["tutorials/intermediate/advanced-reductions.md"]
+        },
+        {
+          "id": "L2_05",
+          "name": "Softmax Implementation",
+          "duration_hours": 6,
+          "prerequisites": ["L2_04"],
+          "learning_objectives": [
+            "Implement numerically stable softmax",
+            "Create fused kernels",
+            "Optimize for different dimensions"
+          ],
+          "resources": ["tutorials/intermediate/softmax.md"],
+          "code_examples": ["kernels/softmax/"],
+          "projects": ["projects/intermediate/softmax-variants/"]
+        },
+        {
+          "id": "L2_06",
+          "name": "Layer Normalization",
+          "duration_hours": 6,
+          "prerequisites": ["L2_04"],
+          "learning_objectives": [
+            "Implement LayerNorm with Welford's algorithm",
+            "Create fused forward/backward",
+            "Match PyTorch performance"
+          ],
+          "resources": ["tutorials/intermediate/layer-norm.md"],
+          "code_examples": ["kernels/layer-norm/"],
+          "projects": ["projects/intermediate/normalization-library/"]
+        }
+      ]
+    },
+    "L3": {
+      "name": "Advanced Patterns",
+      "duration_weeks": "4-6",
+      "difficulty_score": 6.0,
+      "topics": [
+        {
+          "id": "L3_01",
+          "name": "Warp-Level Primitives",
+          "duration_hours": 7,
+          "prerequisites": ["L2_04"],
+          "learning_objectives": [
+            "Use warp shuffle operations",
+            "Implement warp-level algorithms",
+            "Optimize warp utilization"
+          ],
+          "resources": ["tutorials/advanced/warp-primitives.md"],
+          "code_examples": ["kernels/warp-shuffle/"]
+        },
+        {
+          "id": "L3_02",
+          "name": "GEMM Optimization",
+          "duration_hours": 15,
+          "prerequisites": ["L2_02", "L2_03"],
+          "learning_objectives": [
+            "Implement tiled GEMM",
+            "Apply register blocking",
+            "Reach 70%+ of cuBLAS performance"
+          ],
+          "resources": ["tutorials/advanced/gemm-optimization.md"],
+          "code_examples": ["kernels/sgemm/", "kernels/hgemm/"],
+          "projects": ["projects/advanced/gemm-library/"]
+        },
+        {
+          "id": "L3_03",
+          "name": "Attention Mechanisms",
+          "duration_hours": 12,
+          "prerequisites": ["L2_05", "L3_02"],
+          "learning_objectives": [
+            "Implement scaled dot-product attention",
+            "Support multi-head attention",
+            "Handle causal masking"
+          ],
+          "resources": ["tutorials/advanced/attention-basics.md"],
+          "code_examples": ["kernels/transformer/attention/"],
+          "projects": ["projects/advanced/attention-module/"]
+        },
+        {
+          "id": "L3_04",
+          "name": "RoPE Embeddings",
+          "duration_hours": 5,
+          "prerequisites": ["L3_03"],
+          "learning_objectives": [
+            "Implement rotary position embeddings",
+            "Optimize encoding kernels",
+            "Integrate with attention"
+          ],
+          "resources": ["tutorials/advanced/rope.md"],
+          "code_examples": ["kernels/rope/"]
+        },
+        {
+          "id": "L3_05",
+          "name": "Kernel Fusion",
+          "duration_hours": 7,
+          "prerequisites": ["L3_03"],
+          "learning_objectives": [
+            "Identify fusion opportunities",
+            "Implement fused kernels",
+            "Measure fusion benefits"
+          ],
+          "resources": ["tutorials/advanced/kernel-fusion.md"],
+          "projects": ["projects/advanced/transformer-layer/"]
+        }
+      ]
+    },
+    "L4": {
+      "name": "Tensor Cores & Expert",
+      "duration_weeks": "6-8",
+      "difficulty_score": 8.0,
+      "topics": [
+        {
+          "id": "L4_01",
+          "name": "WMMA Programming",
+          "duration_hours": 10,
+          "prerequisites": ["L3_02"],
+          "learning_objectives": [
+            "Understand Tensor Core architecture",
+            "Use WMMA API effectively",
+            "Implement WMMA HGEMM"
+          ],
+          "resources": ["tutorials/expert/wmma.md"],
+          "code_examples": ["kernels/hgemm/wmma/"]
+        },
+        {
+          "id": "L4_02",
+          "name": "MMA and PTX",
+          "duration_hours": 12,
+          "prerequisites": ["L4_01"],
+          "learning_objectives": [
+            "Read and write PTX assembly",
+            "Use MMA instructions",
+            "Optimize at instruction level"
+          ],
+          "resources": ["tutorials/expert/mma-ptx.md"],
+          "code_examples": ["kernels/hgemm/mma/"]
+        },
+        {
+          "id": "L4_03",
+          "name": "CUTLASS and CuTe",
+          "duration_hours": 10,
+          "prerequisites": ["L4_01"],
+          "learning_objectives": [
+            "Understand CUTLASS architecture",
+            "Use CuTe layouts",
+            "Leverage existing optimizations"
+          ],
+          "resources": ["tutorials/expert/cutlass-cute.md"],
+          "code_examples": ["kernels/cutlass/"]
+        },
+        {
+          "id": "L4_04",
+          "name": "Flash Attention",
+          "duration_hours": 15,
+          "prerequisites": ["L3_03", "L4_01"],
+          "learning_objectives": [
+            "Understand IO-aware algorithms",
+            "Implement Flash Attention forward/backward",
+            "Achieve 90%+ of reference performance"
+          ],
+          "resources": ["tutorials/expert/flash-attention.md"],
+          "code_examples": ["kernels/flash-attn/"],
+          "projects": ["projects/expert/flash-attention-library/"]
+        },
+        {
+          "id": "L4_05",
+          "name": "Multi-Stage Pipelines",
+          "duration_hours": 10,
+          "prerequisites": ["L4_02"],
+          "learning_objectives": [
+            "Implement software pipelining",
+            "Use async copy instructions",
+            "Hide memory latency"
+          ],
+          "resources": ["tutorials/expert/pipelining.md"]
+        },
+        {
+          "id": "L4_06",
+          "name": "INT8 Quantization",
+          "duration_hours": 8,
+          "prerequisites": ["L3_02"],
+          "learning_objectives": [
+            "Implement INT8 GEMM",
+            "Understand quantization schemes",
+            "Optimize INT8 kernels"
+          ],
+          "resources": ["tutorials/expert/int8-quantization.md"],
+          "projects": ["projects/expert/quantized-inference/"]
+        }
+      ]
+    },
+    "L5": {
+      "name": "Production Systems",
+      "duration_weeks": "8-12",
+      "difficulty_score": 9.0,
+      "topics": [
+        {
+          "id": "L5_01",
+          "name": "Multi-GPU Programming",
+          "duration_hours": 12,
+          "prerequisites": ["L4_04"],
+          "learning_objectives": [
+            "Manage multiple GPUs",
+            "Optimize P2P transfers",
+            "Handle GPU topology"
+          ],
+          "resources": ["tutorials/expert/multi-gpu.md"]
+        },
+        {
+          "id": "L5_02",
+          "name": "NCCL Collectives",
+          "duration_hours": 10,
+          "prerequisites": ["L5_01"],
+          "learning_objectives": [
+            "Use NCCL effectively",
+            "Implement distributed algorithms",
+            "Optimize communication"
+          ],
+          "resources": ["tutorials/expert/nccl.md"],
+          "code_examples": ["examples/distributed/nccl/"]
+        },
+        {
+          "id": "L5_03",
+          "name": "Distributed Training Patterns",
+          "duration_hours": 15,
+          "prerequisites": ["L5_02"],
+          "learning_objectives": [
+            "Implement data parallelism",
+            "Understand model parallelism",
+            "Design hybrid strategies"
+          ],
+          "resources": ["tutorials/expert/distributed-training.md"],
+          "projects": ["projects/expert/distributed-framework/"]
+        },
+        {
+          "id": "L5_04",
+          "name": "Inference Optimization",
+          "duration_hours": 12,
+          "prerequisites": ["L4_04", "L4_06"],
+          "learning_objectives": [
+            "Implement continuous batching",
+            "Manage KV cache efficiently",
+            "Build serving infrastructure"
+          ],
+          "resources": ["tutorials/expert/inference-optimization.md"],
+          "projects": ["projects/expert/inference-engine/"]
+        },
+        {
+          "id": "L5_05",
+          "name": "Auto-Tuning Systems",
+          "duration_hours": 12,
+          "prerequisites": ["L4_02"],
+          "learning_objectives": [
+            "Design parameter search spaces",
+            "Implement auto-tuning",
+            "Deploy tuned kernels"
+          ],
+          "resources": ["tutorials/expert/auto-tuning.md"]
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "L1": ["L0"],
+    "L2": ["L0", "L1"],
+    "L3": ["L0", "L1", "L2"],
+    "L4": ["L0", "L1", "L2", "L3"],
+    "L5": ["L0", "L1", "L2", "L3", "L4"]
+  },
+  "total_topics": 31,
+  "total_estimated_hours": {
+    "L0": 21,
+    "L1": 23,
+    "L2": 37,
+    "L3": 46,
+    "L4": 65,
+    "L5": 61
+  },
+  "projects_count": 12
+}
